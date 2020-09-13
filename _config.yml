@@ -4,7 +4,7 @@ description: > # your text below (remove <br> elements if you don't need line br
   Research Fellow
   <br><br>
 #  Second description
-#  <br><br>
+  <br><br>
   <a href="https://www.linkedin.com/in/mahyar-osanlouy/">View My LinkedIn Profile</a>
   
 theme: jekyll-theme-minimal
