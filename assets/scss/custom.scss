@@ -1,0 +1,59 @@
+// Custom styles
+
+// Math equation styles
+.math-display {
+  overflow-x: auto;
+  margin: 1.2em 0;
+  padding: 0.5em 0;
+}
+
+.math-inline {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+// KaTeX specific styles
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5em 0;
+}
+
+.katex {
+  font-size: 1em !important;
+}
+
+// Fix for long equations
+.katex-display > .katex {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: normal;
+}
+
+// Ensure proper spacing for inline math
+p .math-inline {
+  margin: 0 0.1em;
+}
+
+// Acting gallery styles
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+  margin: 2rem 0;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.gallery-item img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+}
