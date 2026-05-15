@@ -62,7 +62,7 @@ system's hidden state over time and its relationship to noisy observations. Form
 
 $$
 \begin{aligned}
-x\_{k} &= F\_{k} x\_{k-1} + B\_{k} u\_{k} + w\_{k} \\\\\\
+x\_{k} &= F\_{k} x\_{k-1} + B\_{k} u\_{k} + w\_{k} \\\\
 z\_{k} &= H\_{k} x\_{k} + v\_{k}
 \end{aligned}
 $$
@@ -87,7 +87,7 @@ In the prediction step, the filter projects the current state estimate forward i
 
 $$
 \begin{aligned}
-\hat{x}\_{k|k-1} = F\_{k} \hat{x}\_{k-1|k-1} + B\_{k} u\_{k} \\\\\\
+\hat{x}\_{k|k-1} = F\_{k} \hat{x}\_{k-1|k-1} + B\_{k} u\_{k} \\\\
 P\_{k|k-1} = F\_{k} P\_{k-1|k-1} F\_{k}^{T} + Q\_{k} 
 \end{aligned}
 $$
@@ -101,8 +101,8 @@ In the update step, the filter incorporates the new measurement $z\_{k}$ to refi
 
 $$
 \begin{aligned}
-K\_{k} &= P\_{k|k-1} H\_{k}^{T} \left( H\_{k} P\_{k|k-1} H\_{k}^{T} + R\_{k} \right)^{-1} \\\\\\
-\hat{x}\_{k|k} &= \hat{x}\_{k|k-1} + K\_{k} \left( z\_{k} - H\_{k} \hat{x}\_{k|k-1} \right) \\\\\\
+K\_{k} &= P\_{k|k-1} H\_{k}^{T} \left( H\_{k} P\_{k|k-1} H\_{k}^{T} + R\_{k} \right)^{-1} \\\\
+\hat{x}\_{k|k} &= \hat{x}\_{k|k-1} + K\_{k} \left( z\_{k} - H\_{k} \hat{x}\_{k|k-1} \right) \\\\
 P\_{k|k} &= \left( I - K\_{k} H\_{k} \right) P\_{k|k-1}
 \end{aligned}
 $$
