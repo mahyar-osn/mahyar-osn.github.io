@@ -59,8 +59,14 @@ changing environments.
 
 ### Core Principles
 - **Generative model**: Hidden states evolve via a Markov process, with observations generated from hidden states.
-$$x_k = A f(x_{k-1}) + B u_k + \omega_x$$
-$$y_k = C f(x_k) + \omega_y$$
+
+$$
+x_k = A f(x_{k-1}) + B u_k + \omega_x
+$$
+
+$$
+y_k = C f(x_k) + \omega_y
+$$
 
 - **Free energy minimization**:
   Neurons minimize prediction errors at two levels:
@@ -74,9 +80,19 @@ $$y_k = C f(x_k) + \omega_y$$
 ### Comparison to Kalman Filtering
 - tPC approximates Kalman filtering but avoids tracking posterior uncertainty.
 - Achieves similar accuracy in linear tracking tasks with simpler computations.
-$$\hat{x}_k^- = A \hat{x}_{k-1} + B u_k$$
-$$\hat{x}_k = \hat{x}_k^- + K(y_k - C\hat{x}_k^-)$$
-$$K = \Sigma_x C^T \left[C \Sigma_x C^T + \Sigma_y \right]^{-1}$$
+
+$$
+\hat{x}_k^- = A \hat{x}_{k-1} + B u_k
+$$
+
+$$
+\hat{x}_k = \hat{x}_k^- + K(y_k - C\hat{x}_k^-)
+$$
+
+$$
+K = \Sigma_x C^T \left[C \Sigma_x C^T + \Sigma_y \right]^{-1}
+$$
+
 ---
 
 ## Results

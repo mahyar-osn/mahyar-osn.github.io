@@ -60,12 +60,12 @@ T(u) = \sum_{i=1}^{N} \gamma_i \left\| z(\xi_i) - z_d \right\|^2 + \int_{\Omega}
 $$
 
 where:
-- $( u )$ is the vector of shape (or nodal displacement) parameters.
-- $( z(\xi_i) $) represents the geometric position of a node in local parametric coordinates \( \xi_i \).
-- $( z_d $) is the target data point from the segmented lung surface.
-- $( \gamma_i $) is a weight factor controlling data matching for each node.
-- $( g(u(\xi)) $) is the smoothness (regularization) term that penalizes rapid or non-physical deformations.
-- $( \Omega $) denotes the domain over which the mesh is defined.
+- $u$ is the vector of shape (or nodal displacement) parameters.
+- $z(\xi_i)$ represents the geometric position of a node in local parametric coordinates $\xi_i$.
+- $z_d$ is the target data point from the segmented lung surface.
+- $\gamma_i$ is a weight factor controlling data matching for each node.
+- $g(u(\xi))$ is the smoothness (regularization) term that penalizes rapid or non-physical deformations.
+- $\Omega$ denotes the domain over which the mesh is defined.
 
 This formulation ensures that the FE mesh adapts to the lung's surface while preserving a biologically plausible smooth geometry.
 
@@ -107,26 +107,26 @@ $$
 $$
 
 where:
-- $( S $) is the original shape vector,
-- $( R $) is the rotation matrix,
-- $( T $) is the translation vector,
-- $( \alpha $) is the scaling factor (applied only in size-inclusive models).
+- $S$ is the original shape vector,
+- $R$ is the rotation matrix,
+- $T$ is the translation vector,
+- $\alpha$ is the scaling factor (applied only in size-inclusive models).
 
 ### Principal Component Analysis (PCA)
 PCA is employed to reduce the high-dimensional shape vector into principal modes that capture the primary sources of variance.
 
 #### PCA Decomposition via SVD
-The shape matrix $( \mathbf{S} $) is decomposed using singular value decomposition (SVD):
+The shape matrix $\mathbf{S}$ is decomposed using singular value decomposition (SVD):
 
 $$
 \mathbf{S} = \mathbf{U} {\Sigma} \mathbf{V}^{T},
 $$
 
 where:
-- $( \mathbf{U} $) contains the eigenvectors of $( \mathbf{S} \mathbf{S}^{T} $),
-- $( {\Sigma} $) is the diagonal matrix of singular values $( \sigma_i $) (with $( \lambda_i = \sigma_i^2 $) being 
+- $\mathbf{U}$ contains the eigenvectors of $\mathbf{S} \mathbf{S}^{T}$,
+- ${\Sigma}$ is the diagonal matrix of singular values $\sigma_i$ (with $\lambda_i = \sigma_i^2$ being 
 the eigenvalues),
-- $( \mathbf{V}^{T} $) holds the principal directions in the data space.
+- $\mathbf{V}^{T}$ holds the principal directions in the data space.
 
 Each lung shape is reconstructed as:
 
@@ -135,9 +135,9 @@ M_{l}(w) = \bar{S}_0 + w\, u_{l},
 $$
 
 with:
-- $( \bar{S}_0 $) being the mean shape,
-- $( u_l $) the $( l $)th principal component,
-- $( w \) the corresponding weight factor.
+- $\bar{S}_0$ being the mean shape,
+- $u_l$ the $l$th principal component,
+- $w$ the corresponding weight factor.
 
 The variance explained by each mode is:
 
@@ -147,7 +147,7 @@ $$
 
 ## Results
 - **Correlation with Age:**  
-  Specific principal shape modes display strong correlations with age (e.g., $( R = -0.75, \; p < 0.001 $)), 
+  Specific principal shape modes display strong correlations with age (e.g., $R = -0.75, \; p < 0.001$), 
 - indicating that lung geometries become more “pyramidal” as age increases.
 
 - **Sex and BMI Associations:**  

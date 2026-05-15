@@ -65,16 +65,14 @@ $t$ by a vector with elements $y_i(t)$. Let us assume that the stimulus depends 
 denoted by $x_j(t)$ according to:
 
 $$
-y_i(t) = \sum_j w_{i,j} x_j(t) + \epsilon_{y,i}(t)
-\label{eq:gen_y}
+y_i(t) = \sum_j w_{i,j} x_j(t) + \epsilon_{y,i}(t) \quad (1)
 $$
 
 In the above equation, $w_{i,j}$ form a matrix of parameters, and $\epsilon_{y,i}(t)$ is a noise process (with zero mean).
 Furthermore, let us assume that the hidden variables evolve according to:
 
 $$
-\dot{x}_j = \sum_k v_{j,k} x_k(t) + \epsilon_{x,j}(t)
-\label{eq:gen_x}
+\dot{x}_j = \sum_k v_{j,k} x_k(t) + \epsilon_{x,j}(t) \quad (2)
 $$
 
 Analogously as above, $v_{j,k}$ form a matrix of parameters, and $\epsilon_{x,j}(t)$ is a noise process. 
@@ -86,13 +84,12 @@ a simpler method for estimating $x_j$ that has a more natural neural implementat
 
 Given a observed stimuli $y_i$, we will seek to infer the hidden variables $x_j$ and estimate the parameters $w_{i,j}$ 
 and $v_{j,k}$. In the reminder of Section 2, we will use $x_j$, $w_{i,j}$ and $v_{j,k}$ to denote the estimates of
-corresponding terms in Equations \ref{eq:gen_y}. We wish to find $x_j$ such that the stimulus $y_i$ is 
+corresponding terms in Equations (1) and (2) above. We wish to find $x_j$ such that the stimulus $y_i$ is 
 close to the predicted value $\sum_j w_{i,j} x_j$. Thus we define error in prediction 
 of $y_i$ as:
 
 $$
-e_i = y_i - \sum_j w_{i,j} x_j
-\label{eq:error_y}
+e_i = y_i - \sum_j w_{i,j} x_j \quad (3)
 $$
 
 We wish to minimize a squared sum of these errors which we denote by $E_y = \frac{1}{2} \sum_i \varepsilon_{y,i}^2$. 
@@ -136,7 +133,7 @@ recomputes prediction errors.
 Inference of hidden variables $x_j$ from sensory input $y_i$ can be easily performed in a network shown in Figure 1A.
 The bottom layer consists of sensory neurons representing the stimulus. They project to neurons computing prediction
 error. These errors are then send to the neurons encoding hidden variables which
-change their activity according to Equation \ref{eq:dot_x}. The weights of connections between neurons encoding errors
+change their activity according to the dynamics equation above. The weights of connections between neurons encoding errors
 and hidden variables are symmetric, i.e. equal in both direction. This network has an architecture very similar to 
 a standard predictive coding model , but additionally includes recurrent connections between the
 neurons encoding hidden variables with weights $v_{j,k}$.
