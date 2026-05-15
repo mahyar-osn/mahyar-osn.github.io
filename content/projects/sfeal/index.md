@@ -56,7 +56,7 @@ Each lung is represented by a finite element mesh with a fixed topology (225 nod
 The energy function is defined as:
 
 $$
-T(u) = \sum_{i=1}^{N} \gamma_i \left\| z(\xi_i) - z_d \right\|^2 + \int_{\Omega} g(u(\xi))\, d\xi,
+T(u) = \sum\_{i=1}^{N} \gamma\_i \left\| z(\xi\_i) - z\_d \right\|^2 + \int\_{\Omega} g(u(\xi))\, d\xi,
 $$
 
 where:
@@ -131,7 +131,7 @@ the eigenvalues),
 Each lung shape is reconstructed as:
 
 $$
-M_{l}(w) = \bar{S}_0 + w\, u_{l},
+M\_{l}(w) = \bar{S}\_0 + w\, u\_{l},
 $$
 
 with:
@@ -142,7 +142,7 @@ with:
 The variance explained by each mode is:
 
 $$
-\text{Variance Explained} = \frac{\sigma_l^2}{\sum_{i} \sigma_i^2} \times 100\%.
+\text{Variance Explained} = \frac{\sigma\_l^2}{\sum\_{i} \sigma\_i^2} \times 100\%.
 $$
 
 ## Results

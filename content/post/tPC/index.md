@@ -65,14 +65,14 @@ $t$ by a vector with elements $y_i(t)$. Let us assume that the stimulus depends 
 denoted by $x_j(t)$ according to:
 
 $$
-y_i(t) = \sum_j w_{i,j} x_j(t) + \epsilon_{y,i}(t) \quad (1)
+y\_i(t) = \sum\_j w\_{i,j} x\_j(t) + \epsilon\_{y,i}(t) \quad (1)
 $$
 
 In the above equation, $w_{i,j}$ form a matrix of parameters, and $\epsilon_{y,i}(t)$ is a noise process (with zero mean).
 Furthermore, let us assume that the hidden variables evolve according to:
 
 $$
-\dot{x}_j = \sum_k v_{j,k} x_k(t) + \epsilon_{x,j}(t) \quad (2)
+\dot{x}\_j = \sum\_k v\_{j,k} x\_k(t) + \epsilon\_{x,j}(t) \quad (2)
 $$
 
 Analogously as above, $v_{j,k}$ form a matrix of parameters, and $\epsilon_{x,j}(t)$ is a noise process. 
@@ -89,7 +89,7 @@ close to the predicted value $\sum_j w_{i,j} x_j$. Thus we define error in predi
 of $y_i$ as:
 
 $$
-e_i = y_i - \sum_j w_{i,j} x_j \quad (3)
+e\_i = y\_i - \sum\_j w\_{i,j} x\_j \quad (3)
 $$
 
 We wish to minimize a squared sum of these errors which we denote by $E_y = \frac{1}{2} \sum_i \varepsilon_{y,i}^2$. 
@@ -97,33 +97,33 @@ Hence we change $x_j$ in the direction opposite to the gradient of $E_y$, but we
 towards our goal with the natural evolution of $x_j$:
 
 $$
-\dot{x}_j = - \frac{\partial E_y}{\partial x_j} + \sum_k v_{j,k} x_k
+\dot{x}\_j = - \frac{\partial E\_y}{\partial x\_j} + \sum\_k v\_{j,k} x\_k
 $$
 
 Evaluating the gradient, we obtain the equation describing the dynamics of our estimate of hidden variables:
 
 $$
-\dot{x}_j = \sum_i w_{i,j} \varepsilon_{y,i} + \sum_k v_{j,k} x_k
+\dot{x}\_j = \sum\_i w\_{i,j} \varepsilon\_{y,i} + \sum\_k v\_{j,k} x\_k
 $$
 
 In order to learn parameters $w_{i,j}$, which describe how $y_i$ depends on $x_j$, we modify them to minimize  $E_y$:
 
 $$
-\dot{w}_{i,j} = - \alpha \frac{\partial E_y}{\partial w_{i,j}} = \alpha \varepsilon_{y,i} x_j
+\dot{w}\_{i,j} = - \alpha \frac{\partial E\_y}{\partial w\_{i,j}} = \alpha \varepsilon\_{y,i} x\_j
 $$
 
 In the above equation $\alpha$ denotes a learning rate. In order to learn parameters $v_{j,k}$ describing the natural 
 dynamics of hidden variables, we need to define an error in prediction of this dynamics:
 
 $$
-\varepsilon_{x,j} = \dot{x}_j - \sum_k v_{j,k} x_k
+\varepsilon\_{x,j} = \dot{x}\_j - \sum\_k v\_{j,k} x\_k
 $$
 
 We wish to minimize squared sum of these errors $E_x = \frac{1}{2} \sum_j \varepsilon_{x,j}^2$,
 and hence we modify the weights in the direction opposite to the gradient of $E_x$ over $v_{j,k}$:
 
 $$
-\dot{v}_{j,k} = \alpha \varepsilon_{x,j} x_k
+\dot{v}\_{j,k} = \alpha \varepsilon\_{x,j} x\_k
 $$
 
 In summary, this generalized predictive coding model continuously updates hidden variables and parameters according and
@@ -159,7 +159,7 @@ An alternative way of computing prediction errors  $\varepsilon_{x,j}$ relies on
 equations describing the dynamics of $\dot{x}_j$ adn error $\varepsilon_{x,j}$, we see that these errors are equal to:
 
 $$
-\varepsilon_{x,j} = \sum_i w_{i,j} \varepsilon_{y,i}
+\varepsilon\_{x,j} = \sum\_i w\_{i,j} \varepsilon\_{y,i}
 $$
 
 Such input from the previous layer of prediction error neurons could be computed in dendrites shown in

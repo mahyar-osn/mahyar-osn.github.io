@@ -62,8 +62,8 @@ system's hidden state over time and its relationship to noisy observations. Form
 
 $$
 \begin{aligned}
-x_{k} &= F_{k} x_{k-1} + B_{k} u_{k} + w_{k} \\
-z_{k} &= H_{k} x_{k} + v_{k}
+x\_{k} &= F\_{k} x\_{k-1} + B\_{k} u\_{k} + w\_{k} \\\\
+z\_{k} &= H\_{k} x\_{k} + v\_{k}
 \end{aligned}
 $$
 
@@ -87,8 +87,8 @@ In the prediction step, the filter projects the current state estimate forward i
 
 $$
 \begin{aligned}
-\hat{x}_{k|k-1} = F_{k} \hat{x}_{k-1|k-1} + B_{k} u_{k} \\
-P_{k|k-1} = F_{k} P_{k-1|k-1} F_{k}^{T} + Q_{k} 
+\hat{x}\_{k|k-1} = F\_{k} \hat{x}\_{k-1|k-1} + B\_{k} u\_{k} \\\\
+P\_{k|k-1} = F\_{k} P\_{k-1|k-1} F\_{k}^{T} + Q\_{k} 
 \end{aligned}
 $$
 
@@ -101,9 +101,9 @@ In the update step, the filter incorporates the new measurement $z_{k}$ to refin
 
 $$
 \begin{aligned}
-K_{k} &= P_{k|k-1} H_{k}^{T} \left( H_{k} P_{k|k-1} H_{k}^{T} + R_{k} \right)^{-1} \\
-\hat{x}_{k|k} &= \hat{x}_{k|k-1} + K_{k} \left( z_{k} - H_{k} \hat{x}_{k|k-1} \right) \\
-P_{k|k} &= \left( I - K_{k} H_{k} \right) P_{k|k-1}
+K\_{k} &= P\_{k|k-1} H\_{k}^{T} \left( H\_{k} P\_{k|k-1} H\_{k}^{T} + R\_{k} \right)^{-1} \\\\
+\hat{x}\_{k|k} &= \hat{x}\_{k|k-1} + K\_{k} \left( z\_{k} - H\_{k} \hat{x}\_{k|k-1} \right) \\\\
+P\_{k|k} &= \left( I - K\_{k} H\_{k} \right) P\_{k|k-1}
 \end{aligned}
 $$
 
@@ -116,7 +116,7 @@ encode not just the spread of possible states, but also the correlations between
 The propagation of covariance through the system dynamics involves the transformation:
 
 $$
-P_{k|k-1} = F_{k} P_{k-1|k-1} F_{k}^{T} + Q_{k}
+P\_{k|k-1} = F\_{k} P\_{k-1|k-1} F\_{k}^{T} + Q\_{k}
 $$
 
 This operation reflects how uncertainty "flows" through the linear transformation $F_{k}$, and how process noise $Q_{k}$

@@ -61,11 +61,11 @@ changing environments.
 - **Generative model**: Hidden states evolve via a Markov process, with observations generated from hidden states.
 
 $$
-x_k = A f(x_{k-1}) + B u_k + \omega_x
+x\_k = A f(x\_{k-1}) + B u\_k + \omega\_x
 $$
 
 $$
-y_k = C f(x_k) + \omega_y
+y\_k = C f(x\_k) + \omega\_y
 $$
 
 - **Free energy minimization**:
@@ -82,15 +82,15 @@ $$
 - Achieves similar accuracy in linear tracking tasks with simpler computations.
 
 $$
-\hat{x}_k^- = A \hat{x}_{k-1} + B u_k
+\hat{x}\_k^- = A \hat{x}\_{k-1} + B u\_k
 $$
 
 $$
-\hat{x}_k = \hat{x}_k^- + K(y_k - C\hat{x}_k^-)
+\hat{x}\_k = \hat{x}\_k^- + K(y\_k - C\hat{x}\_k^-)
 $$
 
 $$
-K = \Sigma_x C^T \left[C \Sigma_x C^T + \Sigma_y \right]^{-1}
+K = \Sigma\_x C^T \left[C \Sigma\_x C^T + \Sigma\_y \right]^{-1}
 $$
 
 ---
