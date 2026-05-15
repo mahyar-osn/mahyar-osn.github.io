@@ -66,26 +66,26 @@ y\_k = C f(x\_k) + \omega\_y
 $$
 
 Where:
-- $x_{k}$ is the hidden state at time $k$.
-- $y_{k}$ is the observed sensory input at time $k$.
-- $u_{k}$ is the control input at time $k$.
+- $x\_{k}$ is the hidden state at time $k$.
+- $y\_{k}$ is the observed sensory input at time $k$.
+- $u\_{k}$ is the control input at time $k$.
 - $A$ is the dynamics matrix governing state transitions.
 - $B$ is the control matrix.
 - $C$ is the observation matrix.
 - $f$ is a potentially nonlinear function.
-- $\omega_x$ and $\omega_y$ are Gaussian process and observation noise.
+- $\omega\_x$ and $\omega\_y$ are Gaussian process and observation noise.
 
-The goal is to infer the current hidden state $x_{k}$ given the current observation $y_{k}$ and previous state estimate
-$y_{1:k-1}$. To achieve this, we formulate a variational free energy objective:
+The goal is to infer the current hidden state $x\_{k}$ given the current observation $y\_{k}$ and previous state estimate
+$y\_{1:k-1}$. To achieve this, we formulate a variational free energy objective:
 
 $$
 \mathcal{F}\_k = \frac{1}{2}(y\_k - C f(x\_k))^T \Sigma\_y^{-1} (y\_k - C f(x\_k)) + \frac{1}{2}(x\_k - A f(\hat{x}\_{k-1}) - B u\_k)^T \Sigma\_x^{-1} (x\_k - A f(\hat{x}\_{k-1}) - B u\_k)
 $$
 
 This free energy can be understood as the sum of two weighted prediction errors:
-1. **Sensory prediction errors**: The difference between observed and predicted sensory inputs $y_k - Cf(x_k)$.
+1. **Sensory prediction errors**: The difference between observed and predicted sensory inputs $y\_k - Cf(x\_k)$.
 2. **Temporal prediction errors**: The difference between the current state and the prediction from the previous state
-$x_k - Af(\hat{x}_{k-1}) - Bu_k$.
+$x\_k - Af(\hat{x}\_{k-1}) - Bu\_k$.
 
 Each prediction error is weighted by the precision (inverse variance) of the corresponding noise distribution,
 ensuring that more reliable predictions carry more weight.
@@ -99,7 +99,7 @@ $$
 \tau \frac{d x\_k}{d t} = -\epsilon\_x + f'(x\_k) \odot C^T \epsilon\_y
 $$
 
-Where $\epsilon_x$ and $\epsilon_y$ are precision-weighted prediction errors:
+Where $\epsilon\_x$ and $\epsilon\_y$ are precision-weighted prediction errors:
 
 $$
 \epsilon\_y = \Sigma\_y^{-1} \left( y\_k - C f(x\_k) \right)

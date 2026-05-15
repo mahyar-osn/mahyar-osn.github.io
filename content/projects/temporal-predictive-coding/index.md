@@ -125,8 +125,8 @@ $$
 with length $L$. Also shown are the forces applied to the mass. The restoring force $-mg sin \theta$ is a net force toward
 the equilibrium position. **B:** A phase portrait of the pendulum simulation showing the result of our linear versus
 nonlinear models prediction for the ground-truth data. The vector field (i.e. set of small arrows) was
-created by computing the derivatives of $\frac{d\theta_1}{dt}$ and $\frac{d\theta_2}{dt}$ at $t = 0$ a grid of 30
-points over the range of $-\pi$ to $\pi$ and -4 to +4 for $\theta_1$ and $\theta_2$ respectively. **C:** The barplot
+created by computing the derivatives of $\frac{d\theta\_1}{dt}$ and $\frac{d\theta\_2}{dt}$ at $t = 0$ a grid of 30
+points over the range of $-\pi$ to $\pi$ and -4 to +4 for $\theta\_1$ and $\theta\_2$ respectively. **C:** The barplot
 shows the difference between the mean prediction errors of the linear model versus the nonlinear model from 100
 simulations with varying noise profiles. The mean errors are significantly different $(p \ll 0.001)$
 https://doi.org/10.1371/journal.pcbi.1011183.g007*

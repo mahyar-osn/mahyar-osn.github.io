@@ -61,9 +61,9 @@ $$
 
 where:
 - $u$ is the vector of shape (or nodal displacement) parameters.
-- $z(\xi_i)$ represents the geometric position of a node in local parametric coordinates $\xi_i$.
-- $z_d$ is the target data point from the segmented lung surface.
-- $\gamma_i$ is a weight factor controlling data matching for each node.
+- $z(\xi\_i)$ represents the geometric position of a node in local parametric coordinates $\xi\_i$.
+- $z\_d$ is the target data point from the segmented lung surface.
+- $\gamma\_i$ is a weight factor controlling data matching for each node.
 - $g(u(\xi))$ is the smoothness (regularization) term that penalizes rapid or non-physical deformations.
 - $\Omega$ denotes the domain over which the mesh is defined.
 
@@ -124,7 +124,7 @@ $$
 
 where:
 - $\mathbf{U}$ contains the eigenvectors of $\mathbf{S} \mathbf{S}^{T}$,
-- ${\Sigma}$ is the diagonal matrix of singular values $\sigma_i$ (with $\lambda_i = \sigma_i^2$ being 
+- ${\Sigma}$ is the diagonal matrix of singular values $\sigma\_i$ (with $\lambda\_i = \sigma\_i^2$ being 
 the eigenvalues),
 - $\mathbf{V}^{T}$ holds the principal directions in the data space.
 
@@ -135,8 +135,8 @@ M\_{l}(w) = \bar{S}\_0 + w\, u\_{l},
 $$
 
 with:
-- $\bar{S}_0$ being the mean shape,
-- $u_l$ the $l$th principal component,
+- $\bar{S}\_0$ being the mean shape,
+- $u\_l$ the $l$th principal component,
 - $w$ the corresponding weight factor.
 
 The variance explained by each mode is:

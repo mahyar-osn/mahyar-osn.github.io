@@ -61,40 +61,40 @@ a toy problem, and directions are suggested in which the work on the model needs
 ### Process generating stimuli
 In this report we assume that stimuli are generated from a very simple linear model, which parallels the assumptions
 about signal made by the Kalman filter. Let us denote an observed stimulus at time
-$t$ by a vector with elements $y_i(t)$. Let us assume that the stimulus depends on values of hidden variables
-denoted by $x_j(t)$ according to:
+$t$ by a vector with elements $y\_i(t)$. Let us assume that the stimulus depends on values of hidden variables
+denoted by $x\_j(t)$ according to:
 
 $$
 y\_i(t) = \sum\_j w\_{i,j} x\_j(t) + \epsilon\_{y,i}(t) \quad (1)
 $$
 
-In the above equation, $w_{i,j}$ form a matrix of parameters, and $\epsilon_{y,i}(t)$ is a noise process (with zero mean).
+In the above equation, $w\_{i,j}$ form a matrix of parameters, and $\epsilon\_{y,i}(t)$ is a noise process (with zero mean).
 Furthermore, let us assume that the hidden variables evolve according to:
 
 $$
 \dot{x}\_j = \sum\_k v\_{j,k} x\_k(t) + \epsilon\_{x,j}(t) \quad (2)
 $$
 
-Analogously as above, $v_{j,k}$ form a matrix of parameters, and $\epsilon_{x,j}(t)$ is a noise process. 
-A natural way for estimating $x_j$ from $y_i$ is to employ the Kalman filter, but it involves complex equations,
+Analogously as above, $v\_{j,k}$ form a matrix of parameters, and $\epsilon\_{x,j}(t)$ is a noise process. 
+A natural way for estimating $x\_j$ from $y\_i$ is to employ the Kalman filter, but it involves complex equations,
 and it is not clear how such computation could be implemented in a network of neurons. Therefore, this report describes 
-a simpler method for estimating $x_j$ that has a more natural neural implementation.
+a simpler method for estimating $x\_j$ that has a more natural neural implementation.
 
 ### Computations in the model
 
-Given a observed stimuli $y_i$, we will seek to infer the hidden variables $x_j$ and estimate the parameters $w_{i,j}$ 
-and $v_{j,k}$. In the reminder of Section 2, we will use $x_j$, $w_{i,j}$ and $v_{j,k}$ to denote the estimates of
-corresponding terms in Equations (1) and (2) above. We wish to find $x_j$ such that the stimulus $y_i$ is 
-close to the predicted value $\sum_j w_{i,j} x_j$. Thus we define error in prediction 
-of $y_i$ as:
+Given a observed stimuli $y\_i$, we will seek to infer the hidden variables $x\_j$ and estimate the parameters $w\_{i,j}$ 
+and $v\_{j,k}$. In the reminder of Section 2, we will use $x\_j$, $w\_{i,j}$ and $v\_{j,k}$ to denote the estimates of
+corresponding terms in Equations (1) and (2) above. We wish to find $x\_j$ such that the stimulus $y\_i$ is 
+close to the predicted value $\sum\_j w\_{i,j} x\_j$. Thus we define error in prediction 
+of $y\_i$ as:
 
 $$
 e\_i = y\_i - \sum\_j w\_{i,j} x\_j \quad (3)
 $$
 
-We wish to minimize a squared sum of these errors which we denote by $E_y = \frac{1}{2} \sum_i \varepsilon_{y,i}^2$. 
-Hence we change $x_j$ in the direction opposite to the gradient of $E_y$, but we additionally append this dynamics 
-towards our goal with the natural evolution of $x_j$:
+We wish to minimize a squared sum of these errors which we denote by $E\_y = \frac{1}{2} \sum\_i \varepsilon\_{y,i}^2$. 
+Hence we change $x\_j$ in the direction opposite to the gradient of $E\_y$, but we additionally append this dynamics 
+towards our goal with the natural evolution of $x\_j$:
 
 $$
 \dot{x}\_j = - \frac{\partial E\_y}{\partial x\_j} + \sum\_k v\_{j,k} x\_k
@@ -106,21 +106,21 @@ $$
 \dot{x}\_j = \sum\_i w\_{i,j} \varepsilon\_{y,i} + \sum\_k v\_{j,k} x\_k
 $$
 
-In order to learn parameters $w_{i,j}$, which describe how $y_i$ depends on $x_j$, we modify them to minimize  $E_y$:
+In order to learn parameters $w\_{i,j}$, which describe how $y\_i$ depends on $x\_j$, we modify them to minimize  $E\_y$:
 
 $$
 \dot{w}\_{i,j} = - \alpha \frac{\partial E\_y}{\partial w\_{i,j}} = \alpha \varepsilon\_{y,i} x\_j
 $$
 
-In the above equation $\alpha$ denotes a learning rate. In order to learn parameters $v_{j,k}$ describing the natural 
+In the above equation $\alpha$ denotes a learning rate. In order to learn parameters $v\_{j,k}$ describing the natural 
 dynamics of hidden variables, we need to define an error in prediction of this dynamics:
 
 $$
 \varepsilon\_{x,j} = \dot{x}\_j - \sum\_k v\_{j,k} x\_k
 $$
 
-We wish to minimize squared sum of these errors $E_x = \frac{1}{2} \sum_j \varepsilon_{x,j}^2$,
-and hence we modify the weights in the direction opposite to the gradient of $E_x$ over $v_{j,k}$:
+We wish to minimize squared sum of these errors $E\_x = \frac{1}{2} \sum\_j \varepsilon\_{x,j}^2$,
+and hence we modify the weights in the direction opposite to the gradient of $E\_x$ over $v\_{j,k}$:
 
 $$
 \dot{v}\_{j,k} = \alpha \varepsilon\_{x,j} x\_k
@@ -130,33 +130,33 @@ In summary, this generalized predictive coding model continuously updates hidden
 recomputes prediction errors.
 
 ### Possible neural implementations
-Inference of hidden variables $x_j$ from sensory input $y_i$ can be easily performed in a network shown in Figure 1A.
+Inference of hidden variables $x\_j$ from sensory input $y\_i$ can be easily performed in a network shown in Figure 1A.
 The bottom layer consists of sensory neurons representing the stimulus. They project to neurons computing prediction
 error. These errors are then send to the neurons encoding hidden variables which
 change their activity according to the dynamics equation above. The weights of connections between neurons encoding errors
 and hidden variables are symmetric, i.e. equal in both direction. This network has an architecture very similar to 
 a standard predictive coding model , but additionally includes recurrent connections between the
-neurons encoding hidden variables with weights $v_{j,k}$.
+neurons encoding hidden variables with weights $v\_{j,k}$.
 
 <img src="featured.png" alt="Receptive fields" width="800">
 
-Learning parameters $w_{i,j}$ corresponds to local Hebbian plasticity in the network
+Learning parameters $w\_{i,j}$ corresponds to local Hebbian plasticity in the network
 of Figure 1, analogously as in the standard predictive coding networks. However,
-learning parameters $v_{j,k}$ is less straightforward because the
-prediction error $\varepsilon_{x,j}$ is not explicitly represented in activity of any neurons in the network. 
-Nevertheless, it is possible to construct models in which $\varepsilon_{x,j}$ would be represented in internal 
-signals (e.g. concentrations of particular ions or proteins) within neurons encoding $x_j$,
+learning parameters $v\_{j,k}$ is less straightforward because the
+prediction error $\varepsilon\_{x,j}$ is not explicitly represented in activity of any neurons in the network. 
+Nevertheless, it is possible to construct models in which $\varepsilon\_{x,j}$ would be represented in internal 
+signals (e.g. concentrations of particular ions or proteins) within neurons encoding $x\_j$,
 and let us consider two such possible models.
 
 The first model is illustrated in Figure 1B.
 In this network, the recurrent inputs from neurons representing hidden variables converge on a separate dendritic 
-branch, which sums them and thus can compute $\sum_k v_{j,k} x_k$. To compute the error $\varepsilon_{x,j}$, 
+branch, which sums them and thus can compute $\sum\_k v\_{j,k} x\_k$. To compute the error $\varepsilon\_{x,j}$, 
 the neuron would need to compute the difference between change in its activity and the membrane potential in the dendrite.
 Since both of these quantities are encoded within the same neuron, it is plausible that such a computation may be performed,
 and an error encoded in an internal signal. Such signal could then drive local synaptic plasticity.
 
-An alternative way of computing prediction errors  $\varepsilon_{x,j}$ relies on an observation that by combining 
-equations describing the dynamics of $\dot{x}_j$ adn error $\varepsilon_{x,j}$, we see that these errors are equal to:
+An alternative way of computing prediction errors  $\varepsilon\_{x,j}$ relies on an observation that by combining 
+equations describing the dynamics of $\dot{x}\_j$ adn error $\varepsilon\_{x,j}$, we see that these errors are equal to:
 
 $$
 \varepsilon\_{x,j} = \sum\_i w\_{i,j} \varepsilon\_{y,i}
@@ -171,23 +171,23 @@ induce synaptic plasticity.
 
 ## Results
 I tested the model on a simple problem in which hidden variables and stimuli were 2-dimensional. 
-The hidden variables were generated according to $\dot{x}_j = \sum_k v_{j,k} x_k(t) + \epsilon_{x,j}(t)$ with parameters 
-$v_{j,k}$  set to a rotation matrix visualized in Figure 2C. The stimuli were generated according
-to $y_i(t) = \sum_j w_{i,j} x_j(t) + \epsilon_{y,i}(t)$ with parameters $w_{i,j}$ set to the identity matrix,
+The hidden variables were generated according to $\dot{x}\_j = \sum\_k v\_{j,k} x\_k(t) + \epsilon\_{x,j}(t)$ with parameters 
+$v\_{j,k}$  set to a rotation matrix visualized in Figure 2C. The stimuli were generated according
+to $y\_i(t) = \sum\_j w\_{i,j} x\_j(t) + \epsilon\_{y,i}(t)$ with parameters $w\_{i,j}$ set to the identity matrix,
 so that the stimuli were simply noisy versions of the hidden variables. The stimuli are shown in Figure 2A, and they are 
-noisy periodic signal because parameters $v_{j,k}$ were set to a rotation matrix. The variables and stimuli were generated 
+noisy periodic signal because parameters $v\_{j,k}$ were set to a rotation matrix. The variables and stimuli were generated 
 with a sampling frequency 10, by solving our equations using Euler method with integration step $0.1$. During each step, 
 noise with variance of $0.01$ was added.
 
 <img src="results.png" alt="Receptive fields" width="700">
 
-At the start of the learning process, weights $w_{i,j}$ were initialized to an identity matrix, 
-while the weights between hidden units were all set to $v_{j,k}=0$. The hidden units were also initialized to $x_j=0$. 
+At the start of the learning process, weights $w\_{i,j}$ were initialized to an identity matrix, 
+while the weights between hidden units were all set to $v\_{j,k}=0$. The hidden units were also initialized to $x\_j=0$. 
 The hidden variables and parameters were updated according to our equations above using the Euler method with integration 
 step of $0.1$, and learning rate set to $\alpha=0.01$.
 
 Figure 2B shows that as the learning progressed, the error in prediction of stimuli decreased, so the network was able
-to better predict the stimuli. Figure 2D visualizes learned values of parameters $v_{j,k}$, which are very close to the 
+to better predict the stimuli. Figure 2D visualizes learned values of parameters $v\_{j,k}$, which are very close to the 
 original parameters used to generate the training data (cf. Figure 2C). 
 Thus the network was able to discover the underlying process generating the stimuli.
 

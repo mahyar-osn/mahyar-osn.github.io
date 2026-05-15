@@ -62,20 +62,20 @@ system's hidden state over time and its relationship to noisy observations. Form
 
 $$
 \begin{aligned}
-x\_{k} &= F\_{k} x\_{k-1} + B\_{k} u\_{k} + w\_{k} \\\\
+x\_{k} &= F\_{k} x\_{k-1} + B\_{k} u\_{k} + w\_{k} \\\\\\
 z\_{k} &= H\_{k} x\_{k} + v\_{k}
 \end{aligned}
 $$
 
 Where:
-- $x_{k}$: State vector at time $k$
-- $F_{k}$: State transition matrix
-- $B_{k}$: Control input matrix  
-- $u_{k}$: Control vector
-- $w_{k}$: Process noise $\sim \mathcal{N}(0,Q_{k})$
-- $z_{k}$: Observation vector
-- $H_{k}$: Observation matrix
-- $v_{k}$: Observation noise $\sim \mathcal{N}(0,R_{k})$
+- $x\_{k}$: State vector at time $k$
+- $F\_{k}$: State transition matrix
+- $B\_{k}$: Control input matrix  
+- $u\_{k}$: Control vector
+- $w\_{k}$: Process noise $\sim \mathcal{N}(0,Q\_{k})$
+- $z\_{k}$: Observation vector
+- $H\_{k}$: Observation matrix
+- $v\_{k}$: Observation noise $\sim \mathcal{N}(0,R\_{k})$
 
 This model encodes two key assumptions: linearity and Gaussianity. The linearity allows for closed-form recursive updates, 
 while the Gaussianity ensures that all conditional distributions remain Gaussian, making the mean and covariance sufficient statistics 
@@ -87,31 +87,31 @@ In the prediction step, the filter projects the current state estimate forward i
 
 $$
 \begin{aligned}
-\hat{x}\_{k|k-1} = F\_{k} \hat{x}\_{k-1|k-1} + B\_{k} u\_{k} \\\\
+\hat{x}\_{k|k-1} = F\_{k} \hat{x}\_{k-1|k-1} + B\_{k} u\_{k} \\\\\\
 P\_{k|k-1} = F\_{k} P\_{k-1|k-1} F\_{k}^{T} + Q\_{k} 
 \end{aligned}
 $$
 
-Here $\hat{x}_{k|k-1}$ 
+Here $\hat{x}\_{k|k-1}$ 
 is the predicted state mean, 
-and $P_{k|k-1}$
+and $P\_{k|k-1}$
 is the predicted state covariance.
 
-In the update step, the filter incorporates the new measurement $z_{k}$ to refine the state estimate:
+In the update step, the filter incorporates the new measurement $z\_{k}$ to refine the state estimate:
 
 $$
 \begin{aligned}
-K\_{k} &= P\_{k|k-1} H\_{k}^{T} \left( H\_{k} P\_{k|k-1} H\_{k}^{T} + R\_{k} \right)^{-1} \\\\
-\hat{x}\_{k|k} &= \hat{x}\_{k|k-1} + K\_{k} \left( z\_{k} - H\_{k} \hat{x}\_{k|k-1} \right) \\\\
+K\_{k} &= P\_{k|k-1} H\_{k}^{T} \left( H\_{k} P\_{k|k-1} H\_{k}^{T} + R\_{k} \right)^{-1} \\\\\\
+\hat{x}\_{k|k} &= \hat{x}\_{k|k-1} + K\_{k} \left( z\_{k} - H\_{k} \hat{x}\_{k|k-1} \right) \\\\\\
 P\_{k|k} &= \left( I - K\_{k} H\_{k} \right) P\_{k|k-1}
 \end{aligned}
 $$
 
-Where $K_{k}$ is the Kalman gain, which determines how much the measurement should be trusted relative to the prediction.
+Where $K\_{k}$ is the Kalman gain, which determines how much the measurement should be trusted relative to the prediction.
 Its derivation is rooted in the minimization of the mean squared error of the state estimate, balancing the uncertainty in the prediction and the measurement
 
 ### The Geometry of Uncertainty: Covariance Propagation
-A subtle yet profound aspect of the Kalman filter is its treatment of uncertainty. The covariance matrices $P_{k|k-1}$ and $P_{k|k}$
+A subtle yet profound aspect of the Kalman filter is its treatment of uncertainty. The covariance matrices $P\_{k|k-1}$ and $P\_{k|k}$
 encode not just the spread of possible states, but also the correlations between different state variables.
 The propagation of covariance through the system dynamics involves the transformation:
 
@@ -119,7 +119,7 @@ $$
 P\_{k|k-1} = F\_{k} P\_{k-1|k-1} F\_{k}^{T} + Q\_{k}
 $$
 
-This operation reflects how uncertainty "flows" through the linear transformation $F_{k}$, and how process noise $Q_{k}$
+This operation reflects how uncertainty "flows" through the linear transformation $F\_{k}$, and how process noise $Q\_{k}$
 injects additional uncertainty. The measurement update, in turn, reduces uncertainty by incorporating 
 information from the observation, as modulated by the Kalman gain.
 
