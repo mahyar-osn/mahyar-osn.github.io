@@ -34,12 +34,9 @@ education:
   - course: GradDipSci Computer Science & Mathematics
     institution: University of Auckland
     year: 2017
-  - course: BSc (Hons) Biomedical Science
+  - course: BSc (Hons) Science
     institution: University of Auckland
     year: 2012
-  - course: BSc Physiology
-    institution: University of Auckland
-    year: 2011
 
 # Social/Academic Networking
 # For available icons, see: https://wowchemy.com/docs/getting-started/page-builder/#icons
